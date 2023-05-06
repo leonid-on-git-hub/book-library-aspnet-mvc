@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace BookLibrary.Repository.Models.Book
+namespace BookLibrary.Storage.Models.Book
 {
     public class BookTrackList
     {
@@ -11,7 +10,7 @@ namespace BookLibrary.Repository.Models.Book
         }
 
         public int? BookId { get; set; }
-        public String BookName { get; set; }
+        public string BookName { get; set; }
         public bool? BookAvailability { get; set; }
         public bool CanBePuted { get; set; }
         public List<BookTrackItem> TracksList { get; set; }

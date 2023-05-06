@@ -1,10 +1,10 @@
-﻿using BookLibrary.Repository.Contexts;
-using BookLibrary.Repository.Servicies;
+﻿using BookLibrary.Storage.Contexts;
+using BookLibrary.Storage.Servicies;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace BookLibrary.Repository.Repositories
+namespace BookLibrary.Storage.Repositories
 {
     public class SessionRepository
     {

@@ -1,11 +1,11 @@
-﻿using BookLibrary.Repository.Contexts;
-using BookLibrary.Repository.Exceptions;
-using BookLibrary.Repository.Models.Account;
+﻿using BookLibrary.Storage.Contexts;
+using BookLibrary.Storage.Exceptions;
+using BookLibrary.Storage.Models.Account;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace BookLibrary.Repository.Repositories
+namespace BookLibrary.Storage.Repositories
 {
     public class AccountRepository
     {
@@ -48,7 +48,7 @@ namespace BookLibrary.Repository.Repositories
                                 return 0;
                             break;
                         case true:
-                            throw new SessionExpirationConflictException();
+                            throw new SessionExpirationException("Application and DB session expiration time conflict.");
                     }
                     return accountId;
                 }
@@ -149,7 +149,7 @@ namespace BookLibrary.Repository.Repositories
                         return 0;
                     break;
                 case true:
-                    throw new SessionExpirationConflictException();
+                    throw new SessionExpirationException("Application and DB session expiration time conflict.");
             }
             return accountId;
         }

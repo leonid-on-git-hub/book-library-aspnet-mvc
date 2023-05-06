@@ -1,9 +1,9 @@
-﻿using BookLibrary.Repository.Models.Book;
-using BookLibrary.Repository.Repositories;
-using BookLibrary.Repository.Servicies;
+﻿using BookLibrary.Storage.Models.Book;
+using BookLibrary.Storage.Repositories;
+using BookLibrary.Storage.Servicies;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookLibrary.Repository.Contexts
+namespace BookLibrary.Storage.Contexts
 {
     public class BookLibraryContext : DbContext
     {

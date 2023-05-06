@@ -1,9 +1,9 @@
-﻿using BookLibrary.Repository.Repositories;
+﻿using BookLibrary.Storage.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookLibrary.Repository.Servicies
+namespace BookLibrary.Storage.Servicies
 {
     public class RepositoryService
     {
@@ -16,7 +16,7 @@ namespace BookLibrary.Repository.Servicies
             var success = true;
             _dataStoreDictionary
                 .Where(e => e.Value is T)
-                ?.FirstOrDefault(e => success = success && (e.Value as IDataStoreCreatable).EnsureCreated().Result);
+                ?.FirstOrDefault(e => success = success && (e.Value as IDataStorageCreatable).EnsureCreated().Result);
             return Task.FromResult(success);
         }
 
@@ -29,7 +29,7 @@ namespace BookLibrary.Repository.Servicies
             }
         }
 
-        public static void Register<T>(string connectionString) where T : class, IDataStoreCreatable, new()
+        public static void Register<T>(string connectionString) where T : class, IDataStorageCreatable, new()
         {
             CreateInstance<T>(connectionString);
             //EnsureCreated<T>();
