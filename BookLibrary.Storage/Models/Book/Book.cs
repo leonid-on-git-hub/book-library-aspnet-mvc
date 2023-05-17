@@ -2,7 +2,7 @@
 
 namespace BookLibrary.Storage.Models.Book
 {
-    public class BookItem
+    public class Book
     {
         public int? ID { get; set; }
         public string Name { get; set; }
@@ -10,9 +10,9 @@ namespace BookLibrary.Storage.Models.Book
         public DateTime Year { get; set; }
         public bool? Availability { get; set; }
 
-        public BookItem() { }
+        public Book() { }
 
-        public BookItem(BookItem bookItem)
+        public Book(Book bookItem)
         {
             ID = bookItem.ID;
             Name = bookItem.Name;
