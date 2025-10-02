@@ -97,7 +97,7 @@ namespace BookLibrary.Storage.Repositories
                 }
             }
 
-            return null;
+            return Task.FromResult<User>(null);
         }
 
         public Task<bool> ChangeAccountPassword(Guid accountId, string accountPassword, string newAccountPassword)
