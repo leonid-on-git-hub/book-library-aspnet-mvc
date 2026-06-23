@@ -76,6 +76,7 @@ namespace BookLibrary.Storage.Repositories
                 case true:
                     throw new SessionExpiredException("Application and DB session expiration time conflict.");
             }
+
             return accountRecord.Id;
         }
 

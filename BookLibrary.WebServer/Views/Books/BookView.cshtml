@@ -55,7 +55,8 @@
         if(!author){
             author = '';
         }
-        var authorInput = '<div class="row mb-2">' +
+
+        const authorInput = '<div class="row mb-2">' +
                             '<div class="col-11">' +
                                 '<input class="form-control author" onkeyup="updateAuthors(this)" value="' + author + '" />' +
                             '</div>' +
@@ -65,6 +66,7 @@
                                 '</a>' +
                             '</div>' +
                         '</div>';
+
         $("#authors").append(authorInput);
         $(".author").last().focus();
     }
