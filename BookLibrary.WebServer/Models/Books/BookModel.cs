@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace BookLibrary.WebServer.Models.Books
 {
-    public class BookDto
+    public class BookModel
     {
         public Guid? Id { get; set; }
 
@@ -29,12 +28,12 @@ namespace BookLibrary.WebServer.Models.Books
 
         public bool? IsAvailable { get; set; }
 
-        public BookDto()
+        public BookModel()
         {
 
         }
 
-        public BookDto(Book book)
+        public BookModel(Book book)
         {
             Id = book.Id;
             Name = book.Name;
