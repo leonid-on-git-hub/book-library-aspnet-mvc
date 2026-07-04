@@ -18,7 +18,7 @@ namespace BookLibrary.WebServer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddBook(BookDto addBookModel)
+        public async Task<IActionResult> AddBook(BookModel addBookModel)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace BookLibrary.WebServer.Controllers
 
         public async Task<IActionResult> EditBook(Guid bookId)
         {
-            var book = new BookDto(await booksRepository.GetBook(bookId))
+            var book = new BookModel(await booksRepository.GetBook(bookId))
             {
                 Id = bookId
             };
@@ -48,7 +48,7 @@ namespace BookLibrary.WebServer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditBook(BookDto editBookModel)
+        public async Task<IActionResult> EditBook(BookModel editBookModel)
         {
             var book = editBookModel.ToDomain();
             if (ModelState.IsValid)
