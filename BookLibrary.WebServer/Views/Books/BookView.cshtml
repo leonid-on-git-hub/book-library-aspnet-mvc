@@ -21,23 +21,17 @@
             </label>
             <a onclick="addAuthor()">
                 <img title="Add author" src="../img/add.png" />
-            </a>    
+            </a>      
             
             <div id="authors"></div>
-            <div class="form-group">
-                <input asp-for="Authors" class="form-control d-none" id="authors-input" />
-                <span asp-validation-for="Authors" class="text-danger"></span>
-            </div>
-            
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
     $(function() {
-        var authorsString = '@Html.Raw(Model == null ? string.Empty : Model.Authors)';
-        if(authorsString){
-            authors = authorsString.split(', ');
+        var authors = @Html.Raw(Json.Serialize(Model?.Authors ?? new List<string>()));
+        if (authors.length > 0){
             authors.forEach(function (author){
                 addAuthor(author.trim());
             });
@@ -48,7 +42,6 @@
 
     function deleteAuthor(obj){
         $(obj).parents( ".row" ).first().remove();
-        updateAuthors();
     }
 
     function addAuthor(author){
@@ -58,7 +51,7 @@
 
         const authorInput = '<div class="row mb-2">' +
                             '<div class="col-11">' +
-                                '<input class="form-control author" onkeyup="updateAuthors(this)" value="' + author + '" />' +
+                                '<input name="Authors" class="form-control author" value="' + author + '" />' +
                             '</div>' +
                             '<div class="col-1">' +
                                 '<a class="align-middle" onclick="deleteAuthor(this)">' +
@@ -69,16 +62,5 @@
 
         $("#authors").append(authorInput);
         $(".author").last().focus();
-    }
-
-    function updateAuthors(obj){
-        var authors = [];
-        $(".author").each(function() {
-          var author = $(this).val();
-          if(author){
-              authors.push(author);
-          }
-        });
-        $("#authors-input").val(authors.join(', '));
     }
 </script>
