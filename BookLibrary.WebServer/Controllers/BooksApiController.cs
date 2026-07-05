@@ -34,9 +34,10 @@ namespace BookLibrary.WebServer.Controllers
                 parameters.Search.Value,
                 parameters.Start,
                 parameters.Length,
+                parameters.TableSelectedMode,
                 isColumnOrderable == true ? orderColumnName : null,
                 orderDirection);
-            var booksTotalCount = await GetBooksTotalCount(userId, parameters.Search.Value);
+            var booksTotalCount = await GetBooksTotalCount(userId, parameters.Search.Value, parameters.TableSelectedMode);
             var result = from a in booksList
                          select new ArrayList {
 
@@ -63,10 +64,11 @@ namespace BookLibrary.WebServer.Controllers
             string searchString,
             int from,
             int count,
+            string tableSelectedMode,
             string orderColumnName = null,
             string orderDirection = "asc")
         {
-            return Request.Cookies["TableSelectedMode"]?.ToString() switch
+            return tableSelectedMode switch
             {
                 "all" => await booksRepository.GetBooks(searchString, false, null, from, count, orderColumnName, orderDirection),
                 "available" => await booksRepository.GetAvailableBooks(searchString, from, count, orderColumnName, orderDirection),
@@ -75,9 +77,9 @@ namespace BookLibrary.WebServer.Controllers
             };
         }
 
-        private async Task<int> GetBooksTotalCount(Guid userId, string searchString)
+        private async Task<int> GetBooksTotalCount(Guid userId, string searchString, string tableSelectedMode)
         {
-            return Request.Cookies["TableSelectedMode"]?.ToString() switch
+            return tableSelectedMode switch
             {
                 "all" => await booksRepository.GetBooksTotalCount(searchString),
                 "available" => await booksRepository.GetAvailableBooksTotalCount(searchString),

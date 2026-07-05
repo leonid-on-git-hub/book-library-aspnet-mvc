@@ -62,6 +62,7 @@ namespace BookLibrary.WebServer.Models.DataTables
                 Order = orders,
                 Start = int.Parse(query["start"]),
                 Length = int.Parse(query["length"]),
+                TableSelectedMode = query["tableSelectedMode"],
                 Search = new Search
                 {
                     Value = query["search[value]"],

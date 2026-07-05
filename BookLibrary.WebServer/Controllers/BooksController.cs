@@ -60,37 +60,36 @@ namespace BookLibrary.WebServer.Controllers
             return View(book);
         }
 
-        public async Task<IActionResult> BookTrack(Guid bookId)
+        public async Task<IActionResult> BookTrack(Guid bookId, string tracksCount)
         {
             if (Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid userId))
             {
-                var tracksCount =
-                    Request.Cookies["BookTrackTableSelectedMode"] == null ? BookTrackTableModes.Default : Request.Cookies["BookTrackTableSelectedMode"].ToString();
                 var bookTrackModel = (BookTrackModel)await booksRepository.GetBookTrack(userId, bookId, tracksCount);
+                bookTrackModel.SelectedMode = tracksCount;
 
                 return View(bookTrackModel);
             }
             return new EmptyResult();
         }
 
-        public async Task<IActionResult> TakeBook(Guid bookId)
+        public async Task<IActionResult> TakeBook(Guid bookId, string tracksCount)
         {
             if (Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid userId))
             {
                 await booksRepository.TakeBook(userId, bookId);
             }
 
-            return RedirectToAction("BookTrack", "Books", new RouteValueDictionary(new { bookId }));
+            return RedirectToAction("BookTrack", "Books", new RouteValueDictionary(new { bookId, tracksCount }));
         }
 
-        public async Task<IActionResult> PutBook(Guid bookId)
+        public async Task<IActionResult> PutBook(Guid bookId, string tracksCount)
         {
             if (Guid.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out Guid userId))
             {
                 await booksRepository.PutBook(userId, bookId);
             }
 
-            return RedirectToAction("BookTrack", "Books", new RouteValueDictionary(new { bookId }));
+            return RedirectToAction("BookTrack", "Books", new RouteValueDictionary(new { bookId, tracksCount }));
         }
     }
 }
