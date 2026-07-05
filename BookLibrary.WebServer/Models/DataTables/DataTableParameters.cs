@@ -9,6 +9,7 @@ namespace BookLibrary.WebServer.Models.DataTables
         public List<Order> Order { get; set; }
         public int Start { get; set; }
         public int Length { get; set; }
+        public string TableSelectedMode { get; set; }
         public Search Search { get; set; }
     }
 }

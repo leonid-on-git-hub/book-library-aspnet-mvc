@@ -16,11 +16,11 @@
     @{
         if (Model.IsBookAvailable == true)
         {
-            <a asp-area="" asp-controller="Books" asp-action="TakeBook" asp-route-bookId="@Model.BookId" class="btn btn-primary">Take Book</a>
+            <a asp-area="" asp-controller="Books" asp-action="TakeBook" asp-route-bookId="@Model.BookId" asp-route-tracksCount="@Model.SelectedMode" class="btn btn-primary">Take Book</a>
         }
         else if (Model.IsBookAvailable == false && Model.CanBePut == true)
         {
-            <a asp-area="" asp-controller="Books" asp-action="PutBook" asp-route-bookId="@Model.BookId" class="btn btn-primary">Put Book</a>
+            <a asp-area="" asp-controller="Books" asp-action="PutBook" asp-route-bookId="@Model.BookId" asp-route-tracksCount="@Model.SelectedMode" class="btn btn-primary">Put Book</a>
         }
         <hr class="jumbotron-hr" />
         if (Model.BookTrackList.Count > 0)

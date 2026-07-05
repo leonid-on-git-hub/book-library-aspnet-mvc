@@ -1,33 +1,25 @@
 ﻿
 $(function () {
-    if (!getCookieValue("TableSelectedMode")) {
-        document.cookie = "TableSelectedMode=all";
-    }
-    $("#SelectedMode").val(getCookieValue("TableSelectedMode"));
+    // $("#SelectedMode").val("all");
     LoadIndexBookTable();
-    //document.cookie = 'TableSelectedMode=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 });
-
-function getCookieValue(name) {
-    const regex = new RegExp(`(^| )${name}=([^;]+)`)
-    const match = document.cookie.match(regex)
-    if (match) {
-        return match[2]
-    }
-}
 
 function LoadIndexBookTable() {
     
     $('#library-table').DataTable({
         serverSide: true,
-        ajax: "api/books",
+        ajax: {
+            url: 'api/books',
+            type: 'GET',
+            data: function (d) { d.tableSelectedMode = $('#SelectedMode').val(); }
+        },
         processing: true,
         columns: [
             {
                 name: "Name",
                 sortable: true,
                 render: function (data, type, row) {
-                    return '<a href=\"Books/BookTrack?bookId=' + row[4] + '\" title="' + data + '">' + data + '</a>';
+                    return '<a href=\"Books/BookTrack?bookId=' + row[4] + '&tracksCount=10' + '\" title="' + data + '">' + data + '</a>';
                 }
             },
             {
