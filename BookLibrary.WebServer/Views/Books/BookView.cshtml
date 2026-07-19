@@ -5,12 +5,12 @@
         <div class="col">                
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <textarea asp-for="Name"  rows="4" class="form-control"></textarea>
+                <textarea asp-for="Name"  rows="5" class="form-control"></textarea>
                 <span asp-validation-for="Name" class="text-danger"></span>
-            </div>    
+            </div>  
             <div class="form-group">
                 <label asp-for="Year" class="control-label"></label>
-                <input asp-for="Year" class="form-control" />
+                <input asp-for="Year" class="form-control" style="margin: 2px 0 0 0;"/>
                 <span asp-validation-for="Year" class="text-danger"></span>
             </div>                    
         </div>
@@ -45,6 +45,10 @@
     }
 
     function addAuthor(author){
+        if ($(".author").length > 4){
+            return;
+        }
+
         if(!author){
             author = '';
         }
