@@ -183,7 +183,7 @@ namespace BookLibrary.Storage.Repositories
                         bookRecord.Name,
                         bookTrack.Login,
                         bookTrack.Email,
-                        bookTrack.ActionTime,
+                        bookTrack.ActionTime.ToLocalTime(),
                         bookTrack.Action
                     ))];
                 }
